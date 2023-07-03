@@ -9,6 +9,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Pcparts from "../pages/PcParts";
 import ItemDetails from "../pages/ItemDetails";
+import PcBuilder from "../pages/PcBuilder";
 
 const Routers = () => {
   return (
@@ -16,6 +17,7 @@ const Routers = () => {
       <Route path="/" element={<Navigate to="/home" />} />
       <Route path="/home" element={<Home />} />
       <Route path="/pcparts" element={<Pcparts />} />
+      <Route path="/pcbuilder" element={<PcBuilder />} />
       <Route path="/items/:id" element={<ItemDetails />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/checkout" element={<Checkout />} />

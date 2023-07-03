@@ -45,6 +45,20 @@ import accessories_03_image_01 from "../images/accessories_03.1.jpg";
 import accessories_03_image_02 from "../images/accessories_03.2.jpg";
 import accessories_03_image_03 from "../images/accessories_03.3.jpg";
 
+import case_01_image_01 from "../images/case_01.1.jpg";
+import case_01_image_02 from "../images/case_01.2.jpg";
+import case_01_image_03 from "../images/case_01.3.jpg";
+
+import mobo_01_image_01 from "../images/mobo_01.1.jpg";
+import mobo_01_image_02 from "../images/mobo_01.2.jpg";
+import mobo_01_image_03 from "../images/mobo_01.3.jpg";
+
+import ssd_01_image_01 from "../images/ssd_01.1.jpg";
+import ssd_01_image_02 from "../images/ssd_01.2.jpg";
+
+import psu_01_image_01 from "../images/psu_01.1.jpg";
+import psu_01_image_02 from "../images/psu_01.2.jpg";
+
 const products = [
   {
     id: "01",
@@ -184,8 +198,47 @@ const products = [
     image02: accessories_03_image_02,
     image03: accessories_03_image_03,
     category: "accessories",
-
     desc: "YELLOW MECHANICAL SWITCHES FOR QUICK EXECUTION — Enjoy instant, rapid-fire smooth inputs that are just as quiet thanks to built-in sound dampeners",
+  },
+  {
+    id: "13",
+    title: "NZXT H5 Elite Compact ATX Mid-Tower",
+    price: 132,
+    image01: case_01_image_01,
+    image02: case_01_image_02,
+    image03: case_01_image_03,
+    category: "case",
+    desc: "BUILT-IN RGB LIGHTING: Comes with two pre-installed 140mm RGB fans and a RGB controller for customizable lighting. Tempered glass panels show it all off",
+  },
+  {
+    id: "14",
+    title: "GIGABYTE Z590 AORUS PRO AX",
+    price: 149,
+    image01: mobo_01_image_01,
+    image02: mobo_01_image_02,
+    image03: mobo_01_image_03,
+    category: "mobo",
+    desc: "Supports 11th and 10th Gen Intel Core Series Processors  ",
+  },
+  {
+    id: "15",
+    title: "SAMSUNG 870 EVO SATA III SSD",
+    price: 49,
+    image01:ssd_01_image_01,
+    image02:ssd_01_image_02,
+    image03:ssd_01_image_02,
+    category: "storage",
+    desc: "THE SSD ALL-STAR: The latest 870 EVO has indisputable performance, reliability and compatibility built upon Samsung's pioneering technology. S.M.A.R.T. Support: Yes",
+  },
+  {
+    id: "16",
+    title: "Thermaltake Smart 700W 80+ ",
+    price: 55,
+    image01: psu_01_image_01,
+    image02: psu_01_image_02,
+    image03: psu_01_image_02,
+    category: "psu",
+    desc: "80 plus certified",
   },
 ];
 

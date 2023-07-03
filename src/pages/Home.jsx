@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 
 import Helmet from "../components/Helmet/Helmet.js";
 import { Container, Row, Col, ListGroup, ListGroupItem } from "reactstrap";
-import { BsCpuFill, BsGpuCard, BsKeyboardFill, BsMemory } from "react-icons/bs";
+import { BsCpuFill, BsGpuCard, BsKeyboardFill, BsMemory, BsRocketTakeoff } from "react-icons/bs";
 
 
 import heroImg from "../assets/images/hero.png";
@@ -101,6 +101,9 @@ const Home = () => {
 
                   <button className="all__parts-btn">
                     <Link to="/pcparts">See all Parts</Link>
+                  </button>
+                  <button className="PcBuilder-btn">
+                    <Link to="/pcbuilder">Pc Builder <BsRocketTakeoff/> </Link>
                   </button>
                 </div>
 
