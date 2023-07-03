@@ -1,5 +1,7 @@
 ## Pc Hardware shopping website
 
+deployed site ⚡ : https://hardwarefolio.onrender.com/
+
 ### Features:
 
 ---
