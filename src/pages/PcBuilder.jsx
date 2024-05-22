@@ -5,7 +5,6 @@ import SelectedPart from "../components/UI/selected part/SelectedPart";
 import BuildPreview from "../components/UI/Final Build Preview/BuildPreview";
 import CommonSection from "../components/UI/common-section/CommonSection";
 import Helmet from "../components/Helmet/Helmet";
-import { IconName } from "react-icons/hi2";
 
 function PcBuilder() {
   const [openModal, setOpenModal] = useState(false);
