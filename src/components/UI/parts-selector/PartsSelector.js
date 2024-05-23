@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import products from "../../../assets/fake-data/products";
+import useGetProducts from "../../../Hooks/GetProducts";
+//import products from "../../../assets/fake-data/products";
 
 function PartsSelector({ closemodal, part, updateFinalBuild,UpdateFinalBuildTotal_price }) {
 
@@ -9,6 +10,8 @@ function psClick (selectedPart) {
   closemodal(false)
 
 }
+
+  const products = useGetProducts();
 
   return (
     <div className="modal_container">
@@ -22,7 +25,7 @@ function psClick (selectedPart) {
           .filter((item) => item.category=== part)
           .map((item) => (
             <li className="part_to_select">
-              <img src={item.image01} />
+              <img src={item.imageUrls[0]} alt="product" />
               <p className="part_title">{item.title}</p>
               <p className="part_price">{item.price} $</p>
               <div className="add_btn"  onClick={() => psClick(item)}>add</div>

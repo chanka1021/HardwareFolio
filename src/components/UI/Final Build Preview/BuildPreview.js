@@ -1,15 +1,17 @@
 import React from "react";
-import products from "../../../assets/fake-data/products";
+//import products from "../../../assets/fake-data/products";
 import ReactPlaceholder from "react-placeholder";
 
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../../store/shopping-cart/cartSlice";
+import useGetProducts from "../../../Hooks/GetProducts";
 
 
 
 function BuildPreview({ Build }) {
   
   const dispatch = useDispatch();
+  const products = useGetProducts();
 
   const getBuildItemTitle = (itemId) => {
     const item = products.find((product) => product.id === itemId);
@@ -18,7 +20,7 @@ function BuildPreview({ Build }) {
 
   const getBuildImg = (itemId) => {
     const img = products.find((product) => product.id === itemId);
-    return img ? img.image01 : "";
+    return img ? img.imageUrls[0] : "";
   };
 
 
