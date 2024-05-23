@@ -1,20 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/common-section/CommonSection";
 
 import { Container, Row, Col } from "reactstrap";
 
-import products from "../assets/fake-data/products";
 import ProductCard from "../components/UI/product-card/ProductCard";
 import ReactPaginate from "react-paginate";
 
 import "../styles/all-parts.css";
 import "../styles/pagination.css";
+import useGetProducts from "../Hooks/GetProducts";
 
 const Pcparts = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const [pageNumber, setPageNumber] = useState(0);
+  const [products, setProducts] = useState([]);
+
+  const FireBaseProducts =  useGetProducts();
+  useEffect(() => {
+      setProducts(FireBaseProducts);
+    
+  }, [FireBaseProducts]);
+
 
   const searchedProduct = products.filter((item) => {
     if (searchTerm.value === "") {

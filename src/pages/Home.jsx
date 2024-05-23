@@ -3,80 +3,39 @@ import React, { useState, useEffect, useRef } from "react";
 import Helmet from "../components/Helmet/Helmet.js";
 import { Container, Row, Col, ListGroup, ListGroupItem } from "reactstrap";
 import { BsCpuFill, BsGpuCard, BsKeyboardFill, BsMemory, BsRocketTakeoff } from "react-icons/bs";
-
-
 import heroImg from "../assets/images/hero.png";
 import "../styles/hero-section.css";
-
 import { Link } from "react-router-dom";
-
 import Category from "../components/UI/category/Category.jsx";
-
 import "../styles/home.css";
-
-
-import products from "../assets/fake-data/products.js";
-
-
 import ProductCard from "../components/UI/product-card/ProductCard.jsx";
-
 import whyImg from "../assets/images/location.png";
-
 import networkImg from "../assets/images/network.png";
-
 import TestimonialSlider from "../components/UI/slider/TestimonialSlider.jsx";
+import useGetProducts from "../Hooks/GetProducts.js";
 
 
 const Home = () => {
   const [category, setCategory] = useState("ALL");
-  const [allProducts, setAllProducts] = useState(products);
+  const [allProducts, setAllProducts] = useState([]);
 
-
-  useEffect(() => {
-    if (category === "ALL") {
-      setAllProducts(products);
-    }
-
-    if (category === "gpu") {
-      const filteredProducts = products.filter(
-        (item) => item.category === "gpu"
-      );
-
-      setAllProducts(filteredProducts);
-    }
-
-    if (category === "accessories") {
-      const filteredProducts = products.filter(
-        (item) => item.category === "accessories"
-      );
-
-      setAllProducts(filteredProducts);
-    }
-
-    if (category === "cpu") {
-      const filteredProducts = products.filter(
-        (item) => item.category === "cpu"
-      );
-
-      setAllProducts(filteredProducts);
-    }
-
-    if (category === "ram") {
-      const filteredProducts = products.filter(
-        (item) => item.category === "ram"
-      );
-
-      setAllProducts(filteredProducts);
-    }
-  }, [category]);
-
+  
   const ref = useRef(null);
 
   const handleClick = () => {
     ref.current?.scrollIntoView({behavior: 'smooth'});
-    console.log("clok")
   };
-  
+
+  const FireBaseProducts =  useGetProducts();
+  useEffect(() => {
+    if (category === "ALL") {
+      setAllProducts(FireBaseProducts);
+    } else {
+      const filteredProducts = FireBaseProducts.filter(item => item.category === category.toLowerCase());
+      setAllProducts(filteredProducts);
+    }
+  }, [category, FireBaseProducts]);
+
   return (
     <Helmet title="Home">
       <section>

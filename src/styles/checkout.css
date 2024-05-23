@@ -1,18 +1,59 @@
-.checkout__bill {
-  background: #e4f2fd;
-  padding: 30px;
+/* checkout.css */
+
+.checkout-section {
+  padding: 50px 0;
 }
 
-.checkout__total {
-  border-top: 1px solid #ddd;
-  padding-top: 30px;
+.section-title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
 }
 
-@media only screen and (max-width: 768px) {
-  .checkout__bill h6 {
-    font-size: 0.9rem;
-  }
-  .checkout__bill {
-    margin-top: 40px;
-  }
+.checkout-form {
+  max-width: 400px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.payment-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.payment-button:hover {
+  background-color: #0056b3;
+}
+
+.checkout-bill {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.bill-item {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.total-amount {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
 }

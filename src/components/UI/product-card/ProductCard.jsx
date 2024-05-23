@@ -5,7 +5,8 @@ import { cartActions } from "../../../store/shopping-cart/cartSlice";
 import "../../../styles/product-card.css";
 
 const ProductCard = (props) => {
-  const { id, title, image01, price } = props.item;
+  const { id, title, imageUrls, price } = props.item;
+  const image = imageUrls[0]
   const dispatch = useDispatch();
 
   const addToCart = () => {
@@ -13,16 +14,15 @@ const ProductCard = (props) => {
       cartActions.addItem({
         id,
         title,
-        image01,
+        image,
         price,
       })
     );
   };
-
   return (
     <div className="product__item">
       <div className="product__img">
-        <img src={image01} alt="product-img" className="product__img--main" />
+        <img src={image} alt="product-img" className="product__img--main" />
       </div>
       <div className="product__content">
         <h5 className="product__title">
