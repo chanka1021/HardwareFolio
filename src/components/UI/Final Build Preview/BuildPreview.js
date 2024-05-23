@@ -1,7 +1,5 @@
 import React from "react";
-//import products from "../../../assets/fake-data/products";
 import ReactPlaceholder from "react-placeholder";
-
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../../store/shopping-cart/cartSlice";
 import useGetProducts from "../../../Hooks/GetProducts";

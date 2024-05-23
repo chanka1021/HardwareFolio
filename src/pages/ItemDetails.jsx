@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import products from "../assets/fake-data/products";
 import { useParams } from "react-router-dom";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/common-section/CommonSection";
@@ -12,7 +11,7 @@ import { cartActions } from "../store/shopping-cart/cartSlice";
 import "../styles/product-details.css";
 
 import ProductCard from "../components/UI/product-card/ProductCard";
-
+import useGetProducts from "../Hooks/GetProducts";
 const ItemDetails = () => {
   const [tab, setTab] = useState("desc");
   const [enteredName, setEnteredName] = useState("");
@@ -20,6 +19,7 @@ const ItemDetails = () => {
   const [reviewMsg, setReviewMsg] = useState("");
   const { id } = useParams();
   const dispatch = useDispatch();
+  const products = useGetProducts();
 
   const product = products.find((product) => product.id === id);
   const [previewImg, setPreviewImg] = useState(product.image01);

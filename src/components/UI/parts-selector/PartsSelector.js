@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import useGetProducts from "../../../Hooks/GetProducts";
-//import products from "../../../assets/fake-data/products";
 
 function PartsSelector({ closemodal, part, updateFinalBuild,UpdateFinalBuildTotal_price }) {
 
