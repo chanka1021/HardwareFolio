@@ -8,16 +8,15 @@ import { getDatabase } from 'firebase/database';
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyDwWGXhEIG0HggYUbnCNf1yWq2R5kyHQiA",
-    authDomain: "hardwarefolio-2018c.firebaseapp.com",
-    databaseURL: "https://hardwarefolio-2018c-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "hardwarefolio-2018c",
-    storageBucket: "hardwarefolio-2018c.appspot.com",
-    messagingSenderId: "261190902817",
-    appId: "1:261190902817:web:5b71f426f090a7ae78ef60",
-    measurementId: "G-5FTQ5SCY8Y"
-  };
-
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID 
+};
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
