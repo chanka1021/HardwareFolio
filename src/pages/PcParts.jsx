@@ -2,13 +2,10 @@ import React, { useEffect, useState } from "react";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/common-section/CommonSection";
 
-import { Container, Row, Col } from "reactstrap";
-
 import ProductCard from "../components/UI/product-card/ProductCard";
 import ReactPaginate from "react-paginate";
-
-import "../styles/all-parts.css";
 import "../styles/pagination.css";
+
 import useGetProducts from "../Hooks/GetProducts";
 
 const Pcparts = () => {
@@ -17,12 +14,10 @@ const Pcparts = () => {
   const [pageNumber, setPageNumber] = useState(0);
   const [products, setProducts] = useState([]);
 
-  const FireBaseProducts =  useGetProducts();
+  const FireBaseProducts = useGetProducts();
   useEffect(() => {
-      setProducts(FireBaseProducts);
-    
+    setProducts(FireBaseProducts);
   }, [FireBaseProducts]);
-
 
   const searchedProduct = products.filter((item) => {
     if (searchTerm.value === "") {
@@ -53,50 +48,49 @@ const Pcparts = () => {
       <CommonSection title="Pc Parts" />
 
       <section>
-        <Container>
-          <Row>
-            <Col lg="6" md="6" sm="6" xs="12">
-              <div className="search__widget d-flex align-items-center justify-content-between ">
-                <input
-                  type="text"
-                  placeholder="I'm looking for...."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                <span>
-                  <i class="ri-search-line"></i>
-                </span>
-              </div>
-            </Col>
-            <Col lg="6" md="6" sm="6" xs="12" className="mb-5">
-              <div className="sorting__widget text-end">
-                <select className="w-50">
-                  <option>Default</option>
-                  <option value="ascending">Alphabetically, A-Z</option>
-                  <option value="descending">Alphabetically, Z-A</option>
-                  <option value="high-price">High Price</option>
-                  <option value="low-price">Low Price</option>
-                </select>
-              </div>
-            </Col>
-
-            {displayPage.map((item) => (
-              <Col lg="3" md="4" sm="6" xs="6" key={item.id} className="mb-4">
-                <ProductCard item={item} />
-              </Col>
-            ))}
-
-            <div>
-              <ReactPaginate
-                pageCount={pageCount}
-                onPageChange={changePage}
-                previousLabel={"Prev"}
-                nextLabel={"Next"}
-                containerClassName=" paginationBttns "
+        <div className="container">
+          <div className="grid grid-cols-1 lg:grid-cols-2">
+            <div className="flex items-center justify-between mb-5 lg:mb-0">
+              <input
+                type="text"
+                placeholder="I'm looking for...."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="py-2 px-4 border border-gray-300 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
+              <span>
+                <i className="ri-search-line"></i>
+              </span>
             </div>
-          </Row>
-        </Container>
+            <div className="text-end">
+              <select className="w-full py-2 px-4 border border-gray-300 rounded-md">
+                <option>Default</option>
+                <option value="ascending">Alphabetically, A-Z</option>
+                <option value="descending">Alphabetically, Z-A</option>
+                <option value="high-price">High Price</option>
+                <option value="low-price">Low Price</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
+            {displayPage.map((item) => (
+              <div key={item.id}>
+                <ProductCard item={item} />
+              </div>
+            ))}
+          </div>
+
+          <div className="flex justify-center mt-8">
+            <ReactPaginate
+              pageCount={pageCount}
+              onPageChange={changePage}
+              previousLabel={"Prev"}
+              nextLabel={"Next"}
+              containerClassName="paginationBttns"
+            />
+          </div>
+        </div>
       </section>
     </Helmet>
   );
