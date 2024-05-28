@@ -12,6 +12,8 @@ import ItemDetails from "../pages/ItemDetails";
 import PcBuilder from "../pages/PcBuilder";
 
 const Routers = () => {
+  const userExists = localStorage.getItem("user"); 
+
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/home" />} />
@@ -21,8 +23,8 @@ const Routers = () => {
       <Route path="/items/:id" element={<ItemDetails />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/checkout" element={<Checkout />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={userExists ? <Navigate to="/" /> : <Login />} />
+      <Route path="/register"  element={userExists ? <Navigate to="/" /> : <Register />} />
       <Route path="/contact" element={<Contact />} />
     </Routes>
   );
