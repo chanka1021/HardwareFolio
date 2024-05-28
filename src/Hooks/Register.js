@@ -1,5 +1,6 @@
-import { auth } from "../firebaseConfig";
+import { auth, database  as db} from "../firebaseConfig";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { ref, set } from "firebase/database";
 import { useState } from "react";
 
 const useRegister = () => {
@@ -14,7 +15,14 @@ const useRegister = () => {
       // Update user profile with display name
       await updateProfile(user, { displayName: name });
 
-      console.log("User registered:", user);
+      // Add user information to Realtime Database
+      await set(ref(db, `users/${user.uid}`), {
+        uid: user.uid,
+        displayName: name,
+        email: user.email,
+      });
+
+      console.log("User registered and added to Realtime Database:", user);
     } catch (error) {
       setError(error.message);
       console.error("Error registering user:", error);

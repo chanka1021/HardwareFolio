@@ -30,7 +30,7 @@ function BuildPreview({ Build }) {
         cartActions.addItem({
           id: item.id,
           title: item.title,
-          image01: item.image01,
+          image01:  item.imageUrls[0],
           price: item.price,
         })
       );

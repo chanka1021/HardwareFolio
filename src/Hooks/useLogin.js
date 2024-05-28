@@ -10,9 +10,13 @@ const useLogin = () => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-
       console.log("User logged in:", user);
-      return user;
+      
+      // Save user data to local storage
+      localStorage.setItem('user', JSON.stringify(user));
+      
+      // Optionally, you can also store the user's token or any other necessary information
+      
     } catch (error) {
       setError(error.message);
       console.error("Error logging in user:", error);

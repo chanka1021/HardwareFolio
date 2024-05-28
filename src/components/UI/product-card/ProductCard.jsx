@@ -5,7 +5,7 @@ import { cartActions } from "../../../store/shopping-cart/cartSlice";
 
 const ProductCard = (props) => {
   const { id, title, imageUrls, price } = props.item;
-  const image = imageUrls[0];
+
   const dispatch = useDispatch();
 
   const addToCart = () => {
@@ -13,7 +13,7 @@ const ProductCard = (props) => {
       cartActions.addItem({
         id,
         title,
-        image,
+        image01: imageUrls[0],
         price,
       })
     );
@@ -22,7 +22,7 @@ const ProductCard = (props) => {
   return (
     <div className="border border-blue-100 text-center p-4 rounded-lg transition-transform duration-300 ease-in-out hover:transform hover:-translate-y-1 hover:shadow-lg w-full max-w-xs mx-auto box-border h-full flex flex-col">
       <div className="mb-4 overflow-hidden rounded-lg h-48 flex items-center justify-center transition-transform duration-400 ease-in-out">
-        <img src={image} alt="product-img" className="max-w-full max-h-full object-cover" />
+        <img src={imageUrls[0]} alt="product-img" className="max-w-full max-h-full object-cover" />
       </div>
       <div className="flex-grow text-left">
         <h5 className="mb-4 text-lg font-semibold">

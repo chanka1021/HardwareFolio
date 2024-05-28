@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Container } from "reactstrap";
 import logo from "../../assets/images/res-logo.png";
 import { NavLink, Link } from "react-router-dom";
@@ -18,6 +18,14 @@ const Header = () => {
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   const dispatch = useDispatch();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [user, setUser] = useState(null); // State to store user data
+
+  useEffect(() => {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      setUser(JSON.parse(userData));
+    }
+  }, []);
 
   const toggleMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -56,9 +64,14 @@ const Header = () => {
               </span>
             )}
           </span>
-          <Link to="/login" className="text-lg text-gray-800">
+          {user ? (
+                  <div> {user.displayName}</div>
+          ) : (
+            <Link to="/login" className="text-lg text-gray-800">
             <i className="ri-user-line text-lg text-gray-800"></i>
           </Link>
+          )}
+         
         </div>
 
         {/* Mobile Menu Toggle Button */}
@@ -70,9 +83,17 @@ const Header = () => {
       </Container>
 
       {/* Mobile Menu */}
-      <div className={`fixed inset-0 bg-black text-white bg-opacity-40 z-50 ${isMobileMenuOpen ? 'block' : 'hidden'}`} ref={menuRef}>
+      <div
+        className={`fixed inset-0 bg-black text-white bg-opacity-40 z-50 ${
+          isMobileMenuOpen ? "block" : "hidden"
+        }`}
+        ref={menuRef}
+      >
         <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-          <span className="absolute top-4 right-4 cursor-pointer" onClick={toggleMenu}>
+          <span
+            className="absolute top-4 right-4 cursor-pointer"
+            onClick={toggleMenu}
+          >
             <i className="ri-close-line text-5xl "></i>
           </span>
           <img src={logo} alt="logo" className="w-16 h-16 mb-8" />
@@ -87,12 +108,22 @@ const Header = () => {
             </NavLink>
           ))}
           <div className="flex gap-4 mt-4">
-            <span className="text-white">
-              <Link to="/login">
-                <i className="ri-user-line text-lg text-white"></i>
-              </Link>
-            </span>
-            <span className="relative text-white cursor-pointer" onClick={toggleCart}>
+            {user ? (
+              <div> 
+                {user.displayName || "User"}
+              </div>
+            ) : (
+              <span className="text-white">
+                <Link to="/login">
+                  <i className="ri-user-line text-lg text-white"></i>
+                </Link>
+              </span>
+            )}
+       
+            <span
+              className="relative text-white cursor-pointer"
+              onClick={toggleCart}
+            >
               <i className="ri-shopping-basket-line text-lg text-white"></i>
               {totalQuantity > 0 && (
                 <span className="absolute top-0 right-0 bg-blue-600 text-white w-6 h-6 flex items-center justify-center text-xs font-semibold rounded-full">
