@@ -17,7 +17,7 @@ const Login = () => {
       alert("Login successful!");
       console.log("Logged in user name:", user.displayName);
     } catch (error) {
-      alert(error.message);
+      console.log(error.message);
     }
   };
 

@@ -19,6 +19,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [user, setUser] = useState(null); // State to store user data
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State to manage dropdown visibility
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
@@ -32,6 +33,17 @@ const Header = () => {
   };
 
   const toggleCart = () => dispatch(cartUiActions.toggle());
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+    window.location.reload();
+
+  };
 
   return (
     <header className="bg-white shadow-md">
@@ -65,13 +77,32 @@ const Header = () => {
             )}
           </span>
           {user ? (
-                  <div> {user.displayName}</div>
+            <div className="relative">
+              <span onClick={toggleDropdown} className="cursor-pointer">
+                {user.displayName}
+              </span>
+              {isDropdownOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg py-2">
+                  <Link
+                    to="/profile"
+                    className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                  >
+                    Profile
+                  </Link>
+                  <span
+                    onClick={handleLogout}
+                    className="block px-4 py-2 text-gray-800 hover:bg-gray-200 cursor-pointer"
+                  >
+                    Logout
+                  </span>
+                </div>
+              )}
+            </div>
           ) : (
             <Link to="/login" className="text-lg text-gray-800">
-            <i className="ri-user-line text-lg text-gray-800"></i>
-          </Link>
+              <i className="ri-user-line text-lg text-gray-800"></i>
+            </Link>
           )}
-         
         </div>
 
         {/* Mobile Menu Toggle Button */}
@@ -109,8 +140,26 @@ const Header = () => {
           ))}
           <div className="flex gap-4 mt-4">
             {user ? (
-              <div> 
-                {user.displayName || "User"}
+              <div className="relative">
+                <span onClick={toggleDropdown} className="cursor-pointer">
+                  {user.displayName || "User"}
+                </span>
+                {isDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg py-2">
+                    <Link
+                      to="/profile"
+                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                    >
+                      Profile
+                    </Link>
+                    <span
+                      onClick={handleLogout}
+                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200 cursor-pointer"
+                    >
+                      Logout
+                    </span>
+                  </div>
+                )}
               </div>
             ) : (
               <span className="text-white">
@@ -119,7 +168,7 @@ const Header = () => {
                 </Link>
               </span>
             )}
-       
+
             <span
               className="relative text-white cursor-pointer"
               onClick={toggleCart}
